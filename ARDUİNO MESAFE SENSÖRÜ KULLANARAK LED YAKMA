@@ -1,0 +1,33 @@
+#define TRIG 9
+#define ECHO 10
+#define LED 6
+
+void setup() {
+    pinMode(TRIG, OUTPUT);
+    pinMode(ECHO, INPUT);
+    pinMode(LED, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop() {
+    digitalWrite(TRIG, LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIG, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIG, LOW);
+
+    long duration = pulseIn(ECHO, HIGH);
+    int distance = duration * 0.034 / 2; // Mesafeyi cm cinsine çevirme
+
+    Serial.print("Mesafe: ");
+    Serial.print(distance);
+    Serial.println(" cm");
+
+    if (distance < 10) {  // Eğer mesafe 10 cm'den küçükse
+        digitalWrite(LED, HIGH); // LED yanar
+    } else {
+        digitalWrite(LED, LOW); // LED söner
+    }
+
+    delay(500);
+}
