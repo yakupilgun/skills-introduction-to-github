@@ -1,0 +1,15 @@
+#define LED 13  
+#define BUTTON 2  
+
+void setup() {  
+    pinMode(LED, OUTPUT);  
+    pinMode(BUTTON, INPUT_PULLUP); // Buton varsayılan olarak HIGH olacak  
+}  
+
+void loop() {  
+    if (digitalRead(BUTTON) == LOW) { // Butona basılınca LOW olur  
+        digitalWrite(LED, HIGH);  // LED yanar  
+    } else {  
+        digitalWrite(LED, LOW);   // LED söner  
+    }  
+}
